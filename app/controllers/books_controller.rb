@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-    @books = Book.includes(:bookmarks).order('updated_at DESC')
+    @books = Book.includes(:bookmarks, :reviews).order('updated_at DESC')
   end
 
   def show
@@ -12,6 +12,14 @@ class BooksController < ApplicationController
     if user_signed_in?
       # 自分のブックマークの選択
       @my_bookmark = @book.bookmarks.select{|s| s.user_id == current_user.id}.first
+    end
+    if user_signed_in?
+      # 自分のレビューの存在確認
+      my_review = @book.reviews.select{|s| s.user_id == current_user.id}.first
+      unless my_review
+        # レビューが無い場合は入力フォームを作成
+        @my_review = Review.new
+      end
     end
   end
 

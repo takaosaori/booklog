@@ -1,0 +1,25 @@
+<div class="review clearfix">
+  <div class="thumbnail">
+    <% if review.user.thumbnail? %>
+      <%= image_tag review.user.thumbnail.url %>
+    <% else %>
+      <div class="no_thumbnail"></div>
+    <% end %>
+  </div>
+  <div class="review_contents">
+    <div class="review_header clearfix">
+      <%= review.user.name %>
+      <div class="rank">
+        <%= '★' * review.rank %><%= '☆' * (5 - review.rank) %>
+      </div>
+      <% if user_signed_in? && review.user.id == current_user.id %>
+        <div class="delete">
+          <%= button_to '削除', review_path(review.id), method: :delete, class: 'btn btn-danger', data: {confirm: '削除してよろしいですか？'} %>
+        </div>
+      <% end %>
+    </div>
+    <div class="review_body">
+      <%= review.body %>
+    </div>
+  </div>
+</div>

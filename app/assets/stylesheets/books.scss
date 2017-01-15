@@ -121,6 +121,69 @@ div.wrapper.book_show {
       }
     }
   }
+div.my_review_wrapper {
+    margin-top: 20px;
+    div.footer_menu {
+      margin-top: 10px;
+      div.rank {
+        float: left;
+        label {
+          margin-left: 10px;
+        }
+        select {
+          margin-left: 10px;
+          display: inline-block;
+          width: 50px;
+        }
+      }
+      div.review_post {
+        float: right;
+      }
+    }
+  }
+
+  div.review_list {
+    margin-top: 5px;
+    div.review {
+      width: 100%;
+      margin-top: 10px;
+      div.thumbnail {
+        float: left;
+        width: 100px;
+        height: 100px;
+        div.no_thumbnail {
+          width: 100%;
+          height: 100%;
+          background-color: #ccc;
+        }
+      }
+      div.review_contents {
+        float: left;
+        width: 850px;
+        height: 100px;
+        margin-left: 10px;
+        div.review_header {
+          width: 100%;
+          height: 35px;
+          font-weight: bold;
+          div.rank {
+            display: inline-block;
+            margin-left: 10px;
+          }
+          div.delete {
+            float: right;
+          }
+        }
+        div.review_body {
+          width: 100%;
+          height: 65px;
+          margin-top: 5px;
+          font-style: italic;
+          padding: 3px;
+        }
+      }
+    }
+  }
 }
 
 div.wrapper.book_input {

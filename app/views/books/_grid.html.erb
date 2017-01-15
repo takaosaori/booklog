@@ -18,9 +18,8 @@
       <%= book.title %>
     </div>
     <div class="info">
-      <!-- 下記を追加 -->
       <div class="bookmark">
-        ♥ <%= book.bookmarks.length %>
+        <%= render 'books/info', book: book %>
       </div>
     </div>
     <div class="grid_footer">

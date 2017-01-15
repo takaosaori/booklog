@@ -10,6 +10,9 @@ ja:
         publish_date: '刊行日'
         caption: '説明'
         image: 'Book画像'
+      review:
+        user_id: '投稿者'
+        rank: '評価'
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -217,4 +220,6 @@ ja:
   bookmark:
     created: 'ブックマークに追加しました。'
     deleted: 'ブックマークを削除しました。'  
-    
+  review:
+    created: 'レビューを追加しました。'
+    deleted: 'レビューを削除しました。'

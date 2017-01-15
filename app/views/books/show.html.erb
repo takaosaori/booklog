@@ -9,7 +9,6 @@
 
   <div class="bookmark_and_social clearfix">
     <%= render 'books/social_buttons', url: request.url %>
-    <!-- 下記を追加 -->
     <% if user_signed_in? %>
       <div class="bookmark">
         <% if @my_bookmark %>
@@ -65,14 +64,44 @@
       <div class="caption">
         <%= label :book, :caption %>: <%= @book.caption %>
       </div>
-    <!-- 下記を追加 -->
+
       <div class="info">
-        <div class="bookmark">
-          ♥ <%= @book.bookmarks.length %>
-        </div>
+      <!-- 変更 --> 
+        <%= render 'books/info', book: @book %>
       </div>
     </div>
 
+  </div>
+      <!-- 新規追加 --> 
+  <div class="my_review_wrapper">
+    <% if @my_review %>
+      <%= form_for @my_review do |f| %>
+        <%= f.text_area :body, class: 'form-control', rows: 3, placeholder: 'レビューを書く' %>
+        <div class="footer_menu clearfix">
+          <div class="rank">
+            <%= f.label :rank %> <%= f.select :rank, 5.downto(1).map { |m| [m, m] }, {}, class: 'form-control' %>
+          </div>
+          <div class="review_post">
+            <%= f.submit 'レビュー', class: 'btn btn-primary' %>
+          </div>
+        </div>
+        <%= f.hidden_field :book_id, value: @book.id %>
+      <% end %>
+    <% elsif user_signed_in? %>
+      <b>レビュー済みです</b>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <div class="review_wrapper">
+    レビュー数 <%= @book.reviews.length %>件
+
+    <div class="review_list">
+      <% @book.reviews.each do |review| %>
+        <%= render 'books/review', review: review %>
+      <% end %>
+    </div>
   </div>
 
 </div>
