@@ -1,3 +1,78 @@
-<div class="header">
+<div class="wrapper book_show">
   <%= link_to 'Bookリストに戻る', root_path %>
+
+  <hr>
+
+  <div class="header">
+    <%= @book.title %>
+  </div>
+
+  <div class="bookmark_and_social clearfix">
+    <%= render 'books/social_buttons', url: request.url %>
+    <!-- 下記を追加 -->
+    <% if user_signed_in? %>
+      <div class="bookmark">
+        <% if @my_bookmark %>
+          <!-- ブックマーク済 -->
+          <%= button_to 'ブックマーク解除', bookmark_path(@my_bookmark.id), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <!-- 未ブックマーク -->
+          <%= button_to 'ブックマーク', bookmarks_path(bookmark: {book_id: @book.id}), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? && @book.user_id == current_user.id %>
+    <div class="edit clearfix">
+      <div class="button_wrapper">
+        <%= button_to '削除', book_path(@book.id), method: :delete, class: 'btn btn-danger', data: {confirm: '削除してよろしいですか？'} %>
+      </div>
+      <div class="button_wrapper">
+        <%= button_to '編集', edit_book_path(@book.id), method: :get, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="image">
+        <% if @book.image? %>
+          <%= image_tag @book.image.url %>
+        <% else %>
+          <div class="empty">No image</div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="author">
+        <%= label :book, :author %>: <%= @book.author %>
+      </div>
+      <div class="publisher">
+        <%= label :book, :publisher %>: <%= @book.publisher %>
+      </div>
+
+      <div class="price">
+        <%= label :book, :price %>: ¥<%= @book.price.to_s(:delimited) %>
+      </div>
+
+      <div class="publish_date">
+        <%= label :book, :publish_date %>: <%= @book.publish_date.strftime('%Y年%m月%d日') %>
+      </div>
+
+      <div class="caption">
+        <%= label :book, :caption %>: <%= @book.caption %>
+      </div>
+    <!-- 下記を追加 -->
+      <div class="info">
+        <div class="bookmark">
+          ♥ <%= @book.bookmarks.length %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>

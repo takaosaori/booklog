@@ -2,9 +2,18 @@
 <html>
 <head>
   <title>ElitesBooklog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  
+  <meta property="og:url"           content="<%= request.url %>" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Bookリスト" />
+  <meta property="og:description"   content="Bookリストのサイトです。" />
+  <!--
+  <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+  -->
+  
 </head>
 <body>
  <!-- ログイン・ログアウト用のリンクを追加します -->
@@ -20,6 +29,16 @@
 <p class="notice"><%= notice %></p>
 
 <%= yield %>
+
+ <div id="fb-root"></div>
+ <script>(function(d, s, id) {
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) return;
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.7&appId=280989592245534";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));</script>
+ <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 </body>
 </html>

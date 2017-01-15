@@ -5,7 +5,124 @@ div.login_logout_wrapper {
   text-align: right;
 }
 
-// 新規追加
+div.wrapper.book_index, div.wrapper.book_show {
+  margin-top: 0;
+  width: 1000px;
+
+  div.header {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  div.social_button {
+    text-align: right;
+    div.facebook, div.twitter {
+      float: right;
+      margin-right: 5px;
+    }
+  }
+
+  hr {
+    border-top: 1px solid;
+  }
+
+  hr.bold {
+    border-top: 3px solid;
+  }
+
+}
+
+div.wrapper.book_index {
+  ul.grid_wrapper {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    li.grid {
+      width: 230px;
+      height: 380px;
+      margin: 5px;
+      background-color: antiquewhite;
+      list-style: none;
+      float: left;
+      a {
+        color: black;
+      }
+      div.image {
+        width: 230px;
+        height: 280px;
+        padding: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        div.empty {
+          background-color: #ccc;
+          width: 100%;
+          height: 100%;
+          line-height: 260px;
+          text-align: center;
+        }
+      }
+      div.title {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      div.info {
+        height: 22px;
+        margin-left: 7px;
+        margin-right: 7px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+div.wrapper.book_show {
+  div.bookmark_and_social {
+    margin-bottom: 10px;
+  }
+
+  div.edit {
+    margin-bottom: 10px;
+    div.button_wrapper {
+      float: right;
+      margin-right: 5px;
+    }
+  }
+  div.image {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    div.empty {
+      background-color: #ccc;
+      width: 100%;
+      height: 100%;
+      line-height: 260px;
+      text-align: center;
+    }
+  }
+ // 下記を追加
+  div.bookmark_and_social {
+    div.social_button {
+      float: right;
+    }
+    div.bookmark {
+      float: right;
+      input.btn {
+        font-size: 10px;
+        height: 20px;
+        padding: 0 5px;
+        vertical-align: top;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
 div.wrapper.book_input {
   margin-top: 0;
 }

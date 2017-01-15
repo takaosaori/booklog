@@ -4,10 +4,15 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
+    @books = Book.includes(:bookmarks).order('updated_at DESC')
   end
 
   def show
-
+    @book = Book.find(params[:id])
+    if user_signed_in?
+      # 自分のブックマークの選択
+      @my_bookmark = @book.bookmarks.select{|s| s.user_id == current_user.id}.first
+    end
   end
 
   def new
