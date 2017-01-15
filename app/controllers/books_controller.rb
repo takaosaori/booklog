@@ -4,7 +4,13 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-    @books = Book.includes(:bookmarks, :reviews).order('updated_at DESC')
+    if user_signed_in? && params[:ft] && params[:ft] == 'my'
+      @books = Book.includes(:bookmarks, :reviews, :user).where(user_id: current_user.id).order('updated_at DESC')
+    elsif user_signed_in? && params[:ft] && params[:ft] == 'bookmark'
+      @books = Book.joins(:bookmarks).where('bookmarks.user_id = ?', current_user.id).order('updated_at DESC')
+    else
+      @books = Book.includes(:bookmarks, :reviews, :user).order('updated_at DESC')
+    end
   end
 
   def show

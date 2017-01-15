@@ -189,3 +189,20 @@ div.my_review_wrapper {
 div.wrapper.book_input {
   margin-top: 0;
 }
+
+div.filter {
+  > div {
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+  }
+  a {
+    color: black;
+  }
+  div.bold {
+    font-weight: bold;
+    a {
+      color: blue;
+    }
+  }
+}

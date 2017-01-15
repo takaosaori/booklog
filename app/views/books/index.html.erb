@@ -8,6 +8,14 @@
   <%= render 'books/social_buttons', url: request.url %>
 
   <hr>
+  <% if  user_signed_in? %>
+    <div class="filter">
+      <div <%= 'class=bold' unless params[:ft] %>><%= link_to '全て', root_path %></div>
+      <div <%= 'class=bold' if params[:ft] && params[:ft] == 'my' %>><%= link_to '登録したBook', root_path(ft: 'my') %></div>
+      <div <%= 'class=bold' if params[:ft] && params[:ft] == 'bookmark' %>><%= link_to 'ブックマーク', root_path(ft: 'bookmark') %></div>
+    </div>
+    <hr>
+  <% end %>
 
   <div>
   <%= button_to 'Bookを登録', new_book_path, method: :get, class: 'btn btn-primary' %>
