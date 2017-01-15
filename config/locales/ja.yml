@@ -1,6 +1,15 @@
 ---
 ja:
   activerecord:
+    attributes:
+      book:
+        title: 'タイトル'
+        author: '著者'
+        publisher: '出版社'
+        price: '価格'
+        publish_date: '刊行日'
+        caption: '説明'
+        image: 'Book画像'
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -200,3 +209,8 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
+  book:
+    created: '作成しました。'
+    updated: '更新しました。'
+    deleted: '削除しました。'
