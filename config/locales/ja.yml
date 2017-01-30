@@ -10,6 +10,7 @@ ja:
         publish_date: '刊行日'
         caption: '説明'
         image: 'Book画像'
+        category: 'カテゴリー'
       review:
         user_id: '投稿者'
         rank: '評価'

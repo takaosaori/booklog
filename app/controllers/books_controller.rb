@@ -5,12 +5,15 @@ class BooksController < ApplicationController
   
   def index
     if user_signed_in? && params[:ft] && params[:ft] == 'my'
-      @books = Book.includes(:bookmarks, :reviews, :user).where(user_id: current_user.id).order('updated_at DESC')
+      @books = Book.includes(:bookmarks, :reviews, :user).where(user_id: current_user.id).category_filter(params[:filter_category_id]).order('updated_at DESC')
     elsif user_signed_in? && params[:ft] && params[:ft] == 'bookmark'
-      @books = Book.joins(:bookmarks).where('bookmarks.user_id = ?', current_user.id).order('updated_at DESC')
+      @books = Book.joins(:bookmarks).where('bookmarks.user_id = ?', current_user.id).category_filter(params[:filter_category_id]).order('updated_at DESC')
     else
-      @books = Book.includes(:bookmarks, :reviews, :user).order('updated_at DESC')
+      @books = Book.includes(:bookmarks, :reviews, :user).category_filter(params[:filter_category_id]).order('updated_at DESC')
     end
+    
+      @categories = Category.all
+    
   end
 
   def show
@@ -69,10 +72,20 @@ class BooksController < ApplicationController
     flash[:notice] = I18n.t('book.deleted')
     redirect_to action: :index
   end
+  
+  
+  def filter_by_category
+    if params[:filter_category_id].present?
+      redirect_to action: :index, filter_category_id: params[:filter_category_id]
+    else
+      # フィルターなし
+      redirect_to action: :index
+    end
+  end
 
   private
   def input_params
-    params.require(:book).permit(:title, :author, :publisher, :price, :publish_date, :caption, :image)
+    params.require(:book).permit(:title, :author, :publisher, :price, :publish_date, :caption, :image, :category_id)
   end  
   
 end

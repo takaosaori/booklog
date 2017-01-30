@@ -22,6 +22,9 @@
         <%= render 'books/info', book: book %>
       </div>
     </div>
+    <div class="category">
+      <%= book.category.name %>
+    </div>
     <div class="grid_footer">
       <%= render 'books/social_buttons', url: book_url(book.id) %>
     </div>
