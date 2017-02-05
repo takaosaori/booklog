@@ -16,7 +16,14 @@
     </div>
     <hr>
   <% end %>
+  
+  <ul class="category_list">
+    <% @categories. each do |category| %>
+    <li><%= link_to category.name,  root_path(ft: params[:ft], filter_category_id: category.id) %></li>
+    <% end %>
+  </ul>
 
+  <hr>
   <div>
   <%= button_to 'Bookを登録', new_book_path, method: :get, class: 'btn btn-primary' %>
   </div>

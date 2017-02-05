@@ -69,6 +69,11 @@
       <!-- 変更 --> 
         <%= render 'books/info', book: @book %>
       </div>
+      
+      <div class="category">
+        <%= label :book, :category %>: <%= @book.category.name %>
+      </div>
+      
     </div>
 
   </div>

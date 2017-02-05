@@ -21,6 +21,16 @@ div.wrapper.book_index, div.wrapper.book_show {
       margin-right: 5px;
     }
   }
+  ul.category_list {
+     list-style-type: none;
+     padding: 0px;
+     font-size: 0;
+       li {
+         margin:0px; padding:5px; border:1px solid #DDDDDD;
+         display: inline-block;
+         font-size: 15px;
+       }
+   }
 
   hr {
     border-top: 1px solid;
@@ -31,6 +41,7 @@ div.wrapper.book_index, div.wrapper.book_show {
   }
 
 }
+
 
 div.wrapper.book_index {
   ul.grid_wrapper {
